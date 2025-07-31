@@ -240,8 +240,8 @@
                         </svg>
                     </div>
                     <div class="detail-content">
-                <h3>Transferred from</h3>
-                <p id="transferred-from">Visa Debit 3724</p>
+                        <h3>Transferred from</h3>
+                        <p id="transferred-from">Visa Debit 3724</p>
                     </div>
                 </div>
 
@@ -255,8 +255,8 @@
                         </svg>
                     </div>
                     <div class="detail-content">
-                <h3>Transferred to</h3>
-                <p id="transferred-to">Cash balance</p>
+                        <h3>Transferred to</h3>
+                        <p id="transferred-to">Cash balance</p>
                     </div>
                 </div>
             </div>
@@ -321,30 +321,22 @@
                 'Credit Card'
             ];
 
-        const transactionStatusOptions = [
-            {
-                title: 'Complete',
-                description: 'Transfer from Visa Debit 3724',
-                icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            const transactionStatusOptions = [
+                {
+                    title: 'Complete',
+                    description: 'Transfer from Visa Debit 3724',
+                    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                        </svg>`
-            },
-            {
-                title: 'Pending',
-                description: 'Awaiting confirmation',
-                icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10" stroke-width="2"></circle>
-                       </svg>`
-            },
-            {
-                title: 'Failed',
-                description: 'Transaction failed',
-                icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <line x1="18" y1="6" x2="6" y2="18" stroke-width="2"></line>
-                        <line x1="6" y1="6" x2="18" y2="18" stroke-width="2"></line>
-                       </svg>`
-            }
-        ];
+                }
+            ];
+
+            const cardOptions = [
+                'Visa Debit 3724',
+                'Mastercard 1234',
+                'Amex 5678',
+                'Discover 9012'
+            ];
 
             const fromElement = document.getElementById('transferred-from');
             const toElement = document.getElementById('transferred-to');
@@ -364,9 +356,11 @@
             const statusIconElement = document.getElementById('transaction-status-icon');
 
             if (statusTitleElement && statusDescriptionElement && statusIconElement) {
-                const randomStatus = transactionStatusOptions[Math.floor(Math.random() * transactionStatusOptions.length)];
+                const randomStatus = transactionStatusOptions[0]; // Only one status: Complete
+                const fromElement = document.getElementById('transferred-from');
+                const fromText = fromElement ? fromElement.textContent : 'Visa Debit 3724';
                 statusTitleElement.textContent = randomStatus.title;
-                statusDescriptionElement.textContent = randomStatus.description;
+                statusDescriptionElement.textContent = `Transfer from ${fromText}`;
                 statusIconElement.innerHTML = randomStatus.icon;
             }
         }
