@@ -205,7 +205,7 @@
 
             <!-- Title -->
             <h1 class="title">Add money</h1>
-            <p class="timestamp">Today at 1:11 PM</p>
+            <p class="timestamp" id="timestamp">Today at 1:11 PM</p>
 
             <!-- Amount -->
             <div class="amount" id="amount">+ $4,010.00</div>
@@ -290,13 +290,27 @@
     <script>
         // Generate random amount between 4000 and 4999 on page load
         function generateRandomAmount() {
-            const randomAmount = Math.floor(Math.random() * 3500) + 4000;
+            const randomAmount = Math.floor(Math.random() * 5000) + 4000;
             const formattedAmount = `+ $${randomAmount.toLocaleString()}.00`;
             document.getElementById('amount').textContent = formattedAmount;
         }
 
         // Generate random amount when page loads
-        window.addEventListener('load', generateRandomAmount);
+        function updateTimestamp() {
+            const timestampElement = document.getElementById('timestamp');
+            const now = new Date();
+            const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+            const timeString = now.toLocaleTimeString(undefined, options);
+
+            if (timestampElement) {
+                timestampElement.textContent = timeString;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            updateTimestamp();
+            generateRandomAmount();
+        });
     </script>
 </body>
 
